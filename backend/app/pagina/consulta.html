@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="/public/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿En qué podemos ayudarle?</title>
+</head>
+<body>
+  <div>
+    <h1>Ingrese su consulta</h1>
+    <form id="consultaForm">
+      <label for="consulta">Consulta:</label>
+      <textarea id="consulta" name="consulta" rows="5" required></textarea>
+      <br>
+      <input type="submit" value="Enviar Consulta">
+    </form>
+    <div id="resultadoConsulta"></div>
+  </div>
+
+  <script>
+    document.getElementById('consultaForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evitar el envío del formulario por defecto
+
+      const formData = new FormData(this);
+      fetch('/api/consulta', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('resultadoConsulta').innerHTML = `<p>Respuesta del servidor: ${data}</p>`;
+      })
+      .catch(error => {
+        console.error('Error al enviar la consulta:', error);
+        document.getElementById('resultadoConsulta').innerHTML = '<p>Ocurrió un error al enviar la consulta.</p>';
+      });
+    });
+  </script>
+</body>
+</html>

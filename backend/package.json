@@ -1,0 +1,13 @@
+{
+  "name": "programacionproyecto",
+  "version": "1.0.0",
+  "main": "app/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
